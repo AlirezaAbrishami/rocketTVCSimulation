@@ -83,7 +83,7 @@ void Widget::cycle() {
             thrustAngle = -10;
         rocket.setThrustAngle(thrustAngle);
         rocket.setAngle(&currentRocketAngle);
-        delay();
+        delay();    //use something else if you're not using linux
         stream << thrustAngle << ",";
         stream1 << currentRocketAngle << ",";
     }
