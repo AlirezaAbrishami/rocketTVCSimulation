@@ -21,6 +21,9 @@ void PID::setError(double error) {
 }
 
 void PID::compute(double *currentAngle) {
+    if (globalError > 1) {
+        integral = 0;
+    }
     integral += globalError * globalTimeStep;
     double derivetive = (globalError - previousError) / globalTimeStep;
     *currentAngle =globalKi * integral + globalKp * globalError + globalKd * derivetive;

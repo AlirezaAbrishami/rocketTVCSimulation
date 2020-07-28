@@ -5,7 +5,7 @@
 
 float timeStep = 0.001;
 int simTime = 20000;
-double initialAngle = 5.0;
+double initialAngle = 15.0;
 int timer = 0;
 double mass = 1.3;   //kg
 double thrust = 21;    //Newtons
@@ -17,7 +17,7 @@ double thrustAngle;
 //PID constants
 double kp = 4;
 double ki = 0.5;
-double kd = 2;
+double kd = 3;
 
 bool loop = true;
 
