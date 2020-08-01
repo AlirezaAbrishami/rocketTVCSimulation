@@ -8,6 +8,8 @@ public:
     explicit Rocket(double mass, double r, double deltaT, double thrust);
     void setThrustAngle(double thrustAngle);
     void setAngle(double *currentAngle);
+    double getAcceleration();
+    double getVelocity();
 };
 
 #endif // ROCKET_H

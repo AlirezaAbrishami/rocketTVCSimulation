@@ -19,6 +19,14 @@ Rocket::Rocket(double mass, double r, double deltaT, double thrust) {
     globalThrust = thrust;
 }
 
+double Rocket::getAcceleration() {
+    return acceleration;
+}
+
+double Rocket::getVelocity() {
+    return velocity;
+}
+
 void Rocket::setThrustAngle(double thrustAngle) {
     globalThrustAngle = thrustAngle;
 }
@@ -27,6 +35,7 @@ void Rocket::setAngle(double *currentAngle) {
     double torque = globalR * globalThrust * qSin(globalThrustAngle*PI/180);
     acceleration = torque / (globalMass * globalR * globalR * 0.5);
     velocity += acceleration * globalDeltaT;
+    qDebug() << acceleration;
     *currentAngle += velocity * globalDeltaT;
 
 }

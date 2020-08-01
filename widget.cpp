@@ -5,7 +5,7 @@
 
 float timeStep = 0.001;
 int simTime = 20000;
-double initialAngle = 15.0;
+double initialAngle = 30.0;
 int timer = 0;
 double mass = 1.3;   //kg
 double thrust = 21;    //Newtons
@@ -16,7 +16,7 @@ double thrustAngle;
 
 //PID constants
 double kp = 4;
-double ki = 0.5;
+double ki = 0.01;
 double kd = 3;
 
 bool loop = true;
@@ -26,8 +26,8 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
-
-    ui->label->setPixmap(QPixmap(":/Resources/image.png"));
+    draw(90);
+//    ui->label->setPixmap(QPixmap(":/Resources/image.png"));
 }
 
 Widget::~Widget()
@@ -72,11 +72,24 @@ void Widget::cycle() {
     QFile file1(filename1);
     file1.open(QIODevice::ReadWrite | QIODevice::Append);
     QTextStream stream1(&file1);
+
+    //change the path
+    QString filename2 = "/home/alireza/qtprojects/simulation/data/rocketAccelerationData.txt";
+    QFile file2(filename2);
+    file2.open(QIODevice::ReadWrite | QIODevice::Append);
+    QTextStream stream2(&file2);
+
+    //change the path
+    QString filename3 = "/home/alireza/qtprojects/simulation/data/rocketVelocityData.txt";
+    QFile file3(filename3);
+    file3.open(QIODevice::ReadWrite | QIODevice::Append);
+    QTextStream stream3(&file3);
+
     for (int i = 0; i <= simTime; i++) {
         double error = correctAngle - currentRocketAngle;
         pid.setError(error);
         pid.compute(&thrustAngle);
-        qDebug() << thrustAngle;
+//        qDebug() << thrustAngle;
         if (thrustAngle > 10)
             thrustAngle = 10;
         if (thrustAngle < -10)
@@ -86,6 +99,8 @@ void Widget::cycle() {
         delay();    //use something else if you're not using linux
         stream << thrustAngle << ",";
         stream1 << currentRocketAngle << ",";
+        stream2 << rocket.getAcceleration() << ",";
+        stream3 << rocket.getVelocity() << ",";
     }
     loop = false;
     qDebug() << currentRocketAngle;
