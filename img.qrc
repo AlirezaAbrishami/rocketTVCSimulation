@@ -1,6 +1,5 @@
 <RCC>
-    <qresource prefix="/">
-        <file>Resources/image.png</file>
+    <qresource prefix="/new/prefix1">
+        <file alias="rocket">image.png</file>
     </qresource>
-
 </RCC>

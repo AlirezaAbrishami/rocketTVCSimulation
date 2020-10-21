@@ -37,7 +37,7 @@ Widget::~Widget()
 
 void Widget::draw(double angle) {
     QApplication::processEvents();
-    QPixmap ship(":/Resources/image.png");
+    QPixmap ship(":/new/prefix1/rocket");
     QPixmap rotate(ship.size());
     QPainter p(&rotate);
     p.setRenderHint(QPainter::Antialiasing);
