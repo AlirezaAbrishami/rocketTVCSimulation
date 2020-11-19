@@ -5,7 +5,7 @@
 
 float timeStep = 0.001;
 int simTime = 20000;
-double initialAngle = 30.0;
+double initialAngle = 45.0;
 int timer = 0;
 double mass = 1.3;   //kg
 double thrust = 21;    //Newtons
