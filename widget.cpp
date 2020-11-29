@@ -4,7 +4,7 @@
 #include "rocket.h"
 
 float timeStep = 0.001;
-int simTime = 20000;
+int simTime = 8000;
 double initialAngle = 45.0;
 int timer = 0;
 double mass = 1.3;   //kg
@@ -26,7 +26,7 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
-    draw(90);
+    draw(0);
 //    ui->label->setPixmap(QPixmap(":/Resources/image.png"));
 }
 
@@ -38,14 +38,18 @@ Widget::~Widget()
 void Widget::draw(double angle) {
     QApplication::processEvents();
     QPixmap ship(":/new/prefix1/rocket");
-    QPixmap rotate(ship.size());
+    QSize qsize = ship.size();
+    qsize.setWidth(1200);
+    QPixmap rotate(qsize);
     QPainter p(&rotate);
     p.setRenderHint(QPainter::Antialiasing);
     p.setRenderHint(QPainter::SmoothPixmapTransform);
     p.setRenderHint(QPainter::HighQualityAntialiasing);
-    p.translate((rotate.size().width() / 2) + 0, rotate.size().height() / 2);
+//    qDebug() << "width: " << rotate.size().width();
+//    qDebug() << "height: " << rotate.size().width();
+    p.translate((119 / 2) + 0, rotate.size().height() / 2);
     p.rotate(angle);
-    p.translate((-rotate.size().width() / 2) + 0, -rotate.size().height() / 2);
+    p.translate((-119 / 2) + 0, -rotate.size().height() / 2);
     p.drawPixmap(0, 0, ship);
     p.end();
     ui->label->setPixmap(rotate);
